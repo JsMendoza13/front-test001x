@@ -1,9 +1,6 @@
 {
-<<<<<<< HEAD
-  "name": "front-academico",
-=======
   "name": "academico-vue",
->>>>>>> 421257a (init)
+
   "version": "0.1.0",
   "private": true,
   "scripts": {
