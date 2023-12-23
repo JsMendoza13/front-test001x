@@ -21,11 +21,47 @@
             <tr v-else v-for="(est, i) in this.estudiantes" :key="est.id">
               <td v-text="i + 1"></td>
               <td v-text="est.id"></td>
-              <td v-text="est.foto"></td>
+              <td>
+                <img
+                  v-if="est.foto"
+                  style="width: 150px; !important"
+                  :src="est.foto"
+                  class="img-thumbnail"
+                  alt=""
+                />
+                <img
+                  v-else
+                  style="width: 150px; !important"
+                  src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/user_close_add-256.png"
+                  class="img-thumbnail"
+                  alt="no-img"
+                />
+              </td>
               <td v-text="est.nombre"></td>
               <td v-text="est.apellido"></td>
-              <td v-text="est.created_at"></td>
-              <td></td>
+              <td
+                v-text="new Date(est.created_at).toLocaleDateString('en-US')"
+              ></td>
+
+              <td>
+                <router-link
+                  :to="{ path: 'view/' + est.id }"
+                  class="link btn btn-info"
+                >
+                  <i class="fa solid fa-eye"></i>
+                </router-link>
+                &nbsp;
+                <router-link
+                  :to="{ path: 'edit/' + est.id }"
+                  class="link btn btn-warning"
+                >
+                  <i class="fa solid fa-edit"></i>
+                </router-link>
+                &nbsp;
+                <button class="link btn btn-danger">
+                  <i class="fa solid fa-trash"></i>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
