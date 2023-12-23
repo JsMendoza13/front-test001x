@@ -58,7 +58,10 @@
                   <i class="fa solid fa-edit"></i>
                 </router-link>
                 &nbsp;
-                <button class="link btn btn-danger">
+                <button
+                  class="link btn btn-danger"
+                  v-on:click="($event) => eliminar(est.id, est.nombre)"
+                >
                   <i class="fa solid fa-trash"></i>
                 </button>
               </td>
@@ -72,6 +75,7 @@
 
 <script>
 import axios from "axios";
+import { confirmar } from "../funciones";
 
 export default {
   data() {
@@ -90,6 +94,15 @@ export default {
         this.estudiantes = res.data;
         this.cargando = false;
       });
+    },
+    eliminar(id, nombre) {
+      confirmar(
+        "http://test.test/api/v1/estudiantes/",
+        id,
+        "Eliminar registro",
+        "Realmente desea eliminar a " + nombre + "?"
+      );
+      this.cargando = false;
     },
   },
 };
